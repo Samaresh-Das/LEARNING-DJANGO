@@ -2,8 +2,23 @@
 {% block title %}My homepage {% endblock  %}
 
 {% block body %}
-    {% for post in posts  %}
-        {{ post.text }}
-        <hr>
-    {% endfor %}
+
+    {% comment %} <a href=" {% url 'feed:post' %} ">Create a post</a> {% endcomment %}
+
+    {% comment %} <hr> {% endcomment %}
+
+    <div class="row">
+        {% for post in posts  %}
+        <div class="col-sm-6 col-md-4">
+            <div class="card my-4" style="width: 18rem;">
+                <img src="{{post.image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">{{ post.text }}</p>
+                        <a href="{% url 'feed:detail' post.id %}" class="btn btn-primary">View full details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock  %}
